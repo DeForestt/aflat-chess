@@ -4,18 +4,17 @@
 .needs <io>
 
 int moveBishop(Bishop k, int x, int y, int check){
-    int color; int myX; int myY; Board b;
     
     if(x > 7) {return 0;};
     if(y > 7) {return 0;};
     if(x < 0) {return 0;};
     if(y < 0) {return 0;};
 
-    color = k.color;
-    b = k.board;
+    int color = k.color;
+    Board b = k.board;
 
-    myX = k.x;
-    myY = k.y;
+    int myX = k.x;
+    int myY = k.y;
     int dX = x - myX;
     int dY = y - myY;
 
