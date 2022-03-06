@@ -1,0 +1,7 @@
+.rood "head"
+.needs "Pieces/Pawn"
+.needs "Pieces/Rook"
+.needs "Pieces/Knight"
+.needs "Pieces/Bishop"
+.needs "Pieces/Queen"
+.needs "Pieces/King"
