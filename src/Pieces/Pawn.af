@@ -1,0 +1,105 @@
+.root "head"
+.needs "Pieces/Pawn.gs"
+.needs <std>
+.needs <io> 
+
+adr movePawn = [Pawn p, int x, int y, int check] => {
+
+    if(x > 7) {return 0;};
+    if(y > 7) {return 0;};
+    if(x < 0) {return 0;};
+    if(y < 0) {return 0;};
+
+    int color;
+    color = p.color;
+    Board b;
+    b = p.board;
+    int myX;
+    myX = p.x;
+    int myY;
+    myY = p.y;
+    int dX = x - myX;
+    int dY = y - myY;
+    Piece coll = b.inspect(x, y);
+    if (coll != NULL){
+        int checkColl;
+        checkColl = coll.color;
+        if (checkColl == color){
+            return 0;
+        };
+    };
+
+    if (p.color == 1){
+        dY = dY * -1;
+    };
+    
+    if (dX != 0){
+        if (dX > 1){
+            return 0;
+        };
+        if (dX < -1){
+            return 0;
+        };
+    };
+    if (dY == 0){
+        return 0;
+    };
+    if (dY != 1){
+        if (dY != 2){
+            return 0;
+        };
+        if(p.moveCount != 0){
+            return 0;
+        };
+    };
+    if (dX != 0){
+        if (coll == NULL){
+            return 0;
+        };
+        if (dX > 1){
+            return 0;
+        };
+        if (dX < -1){
+            return 0;
+        };
+        coll.die();
+    };
+
+    if (check == 0){
+        p.x = x;
+        p.y = y;
+        int moveCount;
+        moveCount = p.moveCount;
+        moveCount = moveCount + 1;
+        p.moveCount = moveCount;
+    };
+    return 1;
+};
+
+int drawPawn(Pawn p){
+    print(p.face);
+    return 1;
+};
+
+
+Pawn init@Pawn(int x, int y, int color, Board board){
+    my.x = x;
+    my.y = y;
+    my.color = color;
+    my.board = board;
+    my.moveCount = 0;
+
+
+    my.die = killPiece;
+    my.move = movePawn;
+    my.draw = drawPawn;
+
+    // set the face color based on the color
+    if (color == 0){
+        my.face = "♟";
+        
+    };
+    if (color == 1){
+        my.face = "♙";
+    };
+};

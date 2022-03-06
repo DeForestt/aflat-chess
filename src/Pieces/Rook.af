@@ -1,0 +1,125 @@
+.root "head"
+.needs "Pieces/Rook"
+.needs <io>
+.needs <std>
+
+int moveRook(Rook p, int x, int y){
+    int color; int myX; int myY; Board b;
+    
+    if(x > 7) {return 0;};
+    if(y > 7) {return 0;};
+    if(x < 0) {return 0;};
+    if(y < 0) {return 0;};
+
+    color = p.color;
+    b = p.board;
+
+    myX = p.x;
+    myY = p.y;
+    int dX = x - myX;
+    int dY = y - myY;
+    Piece coll = b.inspect(x, y);
+
+    if(coll != NULL){
+        if(coll.color == color){
+            return 0;
+        };
+    };
+
+    if (dX != 0){
+        if (dY != 0){
+            return  0;
+        };
+    };
+
+    if (dX == 0){
+        if (dY == 0){
+            return 0;
+        };
+    };
+
+    // Check for obstruction
+    if (dX != 0){
+        int spaceB;
+        spaceB = dX;
+        if (spaceB < 0){
+            spaceB = spaceB * -1;
+        };
+        for {int i = 1;}(i < spaceB){i = i + 1;}{
+            if (dX > 0){
+                int nx = myX + i;
+                Piece obs = b.inspect(nx, myY);
+                if (obs != NULL){
+                    return 0;
+                };
+            };
+
+            if (dX < 0){
+                    int nx = x + i;
+                    Piece obs = b.inspect(nx, myY);
+                if (obs != NULL){
+                    return 0;
+                };
+            };
+        };
+    };
+
+    if (dY != 0){
+        int spaceB;
+        spaceB = dY;
+        if (spaceB < 0) {
+            spaceB = spaceB * -1;
+        };
+
+        for {int i = 1;}(i < spaceB){i = i + 1;}{
+            if (dY > 0){
+                int ny = myY + i;
+                Piece obs = b.inspect(myX, ny);
+                if (obs != NULL){
+                    print("obstruction"); print(obs.face); print( " at : ");
+                    printInt(myX); print(" "); printInt(ny); print("\n");
+                    return 0;
+                };
+            };
+            if (dY < 0){
+                int ny = y + i;
+                Piece obs = b.inspect(myX, ny);
+                if (obs != NULL){
+                    print("obstruction"); print(obs.face); print( " at : ");
+                    printInt(myX); print(" "); printInt(ny); print("\n");
+                    return 0;
+                };
+            };
+        };
+    };
+
+    if (coll != NULL){
+        coll.die();
+    };
+
+    p.x = x;
+    p.y = y;
+
+    return 1;
+};
+
+Rook init@Rook(int x, int y, int color, Board board) {
+    my.x = x;
+    my.y = y;
+    my.color = color;
+    my.board = board;
+
+    my.die = killPiece;
+    my.draw = [Rook r] => {
+        print(r.face);
+    };
+
+    my.move = moveRook;
+
+    if (my.color == 1){
+        my.face = "♖";
+    };
+    if (my.color == 0){
+        my.face = "♜";
+    };
+};

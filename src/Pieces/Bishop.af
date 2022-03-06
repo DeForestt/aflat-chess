@@ -1,0 +1,79 @@
+.root "head"
+.needs "Pieces/Bishop.gs"
+.needs <math>
+.needs <io>
+
+int moveBishop(Bishop k, int x, int y, int check){
+    int color; int myX; int myY; Board b;
+    
+    if(x > 7) {return 0;};
+    if(y > 7) {return 0;};
+    if(x < 0) {return 0;};
+    if(y < 0) {return 0;};
+
+    color = k.color;
+    b = k.board;
+
+    myX = k.x;
+    myY = k.y;
+    int dX = x - myX;
+    int dY = y - myY;
+
+    if (dX == 0){return 0;};
+    if (dY == 0){return 0;};
+
+    int aDX = abs(dX);
+    int aDY = abs(dY);
+
+    if (aDY != aDX){return 0};
+
+    int moddx;
+    int moddy;
+    if (dX > 0){moddx = 1;};
+    if (dX < 0){moddx = -1;};
+    if (dY > 0){moddy = 1;};
+    if (dY < 0){moddy = -1;};
+    while(myX != x){
+        myX = myX + moddx;
+        myY = myY + moddy;
+        Piece coll = b.inspect(myX, myY);
+        if (coll != NULL){
+            if (x != myX){
+                return 0;
+            };
+            if (coll.color == color){
+                return 0;
+            };
+            coll.die();
+        };
+    };
+
+    if (check == 0){
+        k.x = x;
+        k.y = y;
+    };
+
+    return 1;
+};
+
+Bishop init@Bishop(int x, int y, int color, Board board){
+    my.x = x;
+    my.y = y;
+    my.color = color;
+    my.board = board;
+
+    my.die = killPiece;
+    my.move = moveBishop;
+
+    my.draw = [Bishop b] => {
+        print(b.face);
+    };
+
+    if(color == 1){
+        my.face = "♗"
+    };
+
+    if (color == 0){
+        my.face = "♝"
+    };
+};

@@ -1,0 +1,106 @@
+.root "head"
+.needs "Pieces/King.gs"
+.needs <io>
+.needs <std>
+.needs <math>
+.needs <Collections>
+
+int moveKing(King k, int x, int y, int check){
+    int color; int myX; int myY; Board b;
+    b = k.board;
+    
+    if(x > 7) {return 0;};
+    if(y > 7) {return 0;};
+    if(x < 0) {return 0;};
+    if(y < 0) {return 0;};
+
+    LinkedList enemies;
+    if (k.color == 0){
+        enemies = b.blackPieces;
+    };
+    if (k.color == 1){
+        enemies = b.whitePieces;
+    };
+
+    Pos po = new Pos;
+    po.x = x;
+    po.y = y;
+
+    if(check == 0){
+        Array dangerList = enemies.where([Piece en, int i, Pos loc]=>{
+            int tx;
+            tx = loc.x;
+            int ty;
+            ty = loc.y;
+            int safe = en.move(tx, ty, 1);
+            if (en.x == -1){
+                return 0;
+            };
+            return safe;
+        }, po);
+
+        if(dangerList.size > 0){
+            print("This move will put your king in check!");
+            return 0;
+        };
+    };
+
+    color = k.color;
+    
+
+    myX = k.x;
+    myY = k.y;
+    int dX = x - myX;
+    int dY = y - myY;
+    dX = abs(dX);
+    dY = abs(dY);
+
+    if(dX == 0){
+        if(dY == 0) {
+            return 0;
+        };
+    };
+
+    if(dX > 1){
+        return 0;
+    };
+    
+    if(dY > 1){
+        return 0;
+    };
+
+    Piece coll = b.inspect(x, y);
+
+    if(coll != NULL){
+        if(coll.color == color){
+            return 0;
+        };
+        coll.die();
+    };
+
+    if (check == 0){
+        k.x = x;
+        k.y = y;
+    };
+    return 1;
+};
+
+King init@King(int x, int y, int color, Board board){
+    my.x = x;
+    my.y = y;
+    my.color = color;
+    my.board = board;
+
+    my.draw = [King k] => {
+        print(k.face);
+    };
+    my.die = killPiece;
+    my.move = moveKing;
+
+    if(color == 1){
+        my.face = "♔";
+    };
+    if (color == 0){
+        my.face =  "♚";
+    };
+};

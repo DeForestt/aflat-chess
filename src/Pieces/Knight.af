@@ -1,0 +1,81 @@
+.root "head"
+.needs "Pieces/Knight.gs"
+.needs <io>
+
+int moveKnight(Knight k, int x, int y, int check){
+    int color; int myX; int myY; Board b;
+    
+    if(x > 7) {return 0;};
+    if(y > 7) {return 0;};
+    if(x < 0) {return 0;};
+    if(y < 0) {return 0;};
+
+    color = k.color;
+    b = k.board;
+
+    myX = k.x;
+    myY = k.y;
+    int dX = x - myX;
+    int dY = y - myY;
+    if (dY < 0){dY = dY * -1};
+    if (dX < 0){dX = dX * -1};
+
+
+
+    if(dX != 2){
+        if (dY != 2){
+            return 0;
+        };
+    };
+
+    if(dX == 2){
+        if(dY != 1){
+            return 0;
+        };
+    };
+
+    if(dY == 2){
+        if(dX != 1){
+            return 0;
+        };
+    };
+
+    Piece coll = b.inspect(x, y);
+
+    if(coll != NULL){
+        if(coll.color == color){
+            return 0;
+        };
+        coll.die();
+    };
+
+    if (check == 0){
+        k.x = x;
+        k.y = y;
+    };
+
+    return 1;
+};
+
+Knight init@Knight(int x, int y, int color, Board board){
+    my.x = x;
+    my.y = y;
+    my.color = color;
+    my.board = board;
+
+    my.die = killPiece;
+    
+    my.draw = [Knight n] => {
+        print(n.face);
+    };
+    
+    my.move = moveKnight;
+
+    if (color == 1){
+        my.face = "♘";
+    };
+
+    if (color == 0){
+        my.face = "♞";
+    };
+};

@@ -1,0 +1,8 @@
+.root "head"
+.needs "Piece.gs"
+
+int killPiece(Piece piece){
+    piece.x = -1;
+    piece.y = -1;
+    return 0;
+};
