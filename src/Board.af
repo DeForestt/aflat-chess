@@ -201,9 +201,46 @@ int move@Board(int x, int y){
         return 1;
     };
 
+    Piece k;
+    ICollection enemies;
+
+    if (turn == 0){
+        k = my.whiteKing;
+        enemies = my.blackPieces;
+    };
+    if (turn == 1){
+        k = my.blackKing;
+        enemies = my.whitePieces;
+    };
+
+    // Check if the king will be in danger
+    int kingX = k.x;
+    int kingY = k.y;
+    Pos po = new Pos;
+    po.x = kingX;
+    po.y = kingY;
+
+    Array danger = enemies.where([Piece en, int i, Pos loc]=>{
+        int tx = loc.x;
+        int ty = loc.y;
+        int safe = en.move(tx, ty, 1);
+        if (en.x == -1){
+            return 0;
+        };
+        return safe;
+    }, po);
+
+    if (danger.size > 0){
+        print("    King is in danger\n");
+        print("    Press enter to continue...\n");
+        readString(?b);
+        return 1;
+    };
+
     if (turn == 0){
         my.turn = 1;
     };
+
     if (turn == 1){
         my.turn = 0;
     };
