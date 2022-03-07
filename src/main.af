@@ -19,6 +19,7 @@ int main(){
 		if (letter == 'q'){
 			print("Thank you for playing!\n");
 			print("Quitting...\n");
+			b.delete();
 			return 0;
 		};
 		int number = toInt(cNumber);

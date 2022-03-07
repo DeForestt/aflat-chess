@@ -228,6 +228,8 @@ int move@Board(int x, int y){
         return safe;
     }, po);
 
+    free(po);
+
     if (danger.size > 0){
         print("    King is in danger if you make this move\n");
         print("    Press enter to continue...\n");
@@ -248,6 +250,17 @@ int move@Board(int x, int y){
     return 0;
 };
 
+int delete@Board(){
+    LinkedList whitePieces = my.whitePieces;
+    LinkedList blackPieces = my.blackPieces;
+
+    whitePieces.delete();
+    blackPieces.delete();
+
+    free(my);
+    return 0;
+};
+
 Piece inspect@Board(int x, int y){
     LinkedList blackPieces;
     blackPieces = my.blackPieces;
@@ -256,9 +269,7 @@ Piece inspect@Board(int x, int y){
 
     Piece found = NULL;
     
-    Pos po = new Pos;
-    po.x = x;
-    po.y = y;
+    Pos po = new Pos(x, y);
 
     Array onSpace = whitePieces.where([Piece p, int index, Pos me] => {
         int mX;
@@ -281,6 +292,7 @@ Piece inspect@Board(int x, int y){
     if (onSpace.size > 0){
         adr pointer = onSpace.at(0);
         found = pointer as Piece;
+        free(po);
         return found;
     };
 
@@ -305,9 +317,11 @@ Piece inspect@Board(int x, int y){
     if (onSpace.size > 0){
         adr pointer = onSpace.at(0);
         found = pointer as Piece;
+        free(po);
         return found;
     };
 
+    free(po);
     return found;
 };
 

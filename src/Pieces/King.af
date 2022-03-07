@@ -23,8 +23,6 @@ int moveKing(King k, int x, int y, int check){
     };
 
     Pos po = new Pos(x, y);
-    po.x = x;
-    po.y = y;
 
     if(check == 0){
         Array dangerList = enemies.where([Piece en, int i, Pos loc]=>{
@@ -47,7 +45,7 @@ int moveKing(King k, int x, int y, int check){
         free(dangerList);
     };
 
-    free(Pos);
+    free(po);
 
     color = k.color;
     

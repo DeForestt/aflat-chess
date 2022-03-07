@@ -17,6 +17,7 @@ class Board{
     Piece inspect(int x, int y);
     int select(int x, int y);
     int move(int x, int y);
+    int delete();
 
     int display();
     adr init();
