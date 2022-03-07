@@ -3,7 +3,7 @@
 .needs <io>
 .needs <std>
 
-int moveRook(Rook p, int x, int y){
+int moveRook(Rook p, int x, int y, int check){
     int color; int myX; int myY; Board b;
     
     if(x > 7) {return 0;};
@@ -98,9 +98,10 @@ int moveRook(Rook p, int x, int y){
             coll.die();
         };
     };
-
-    p.x = x;
-    p.y = y;
+    if(check == 0){
+        p.x = x;
+        p.y = y;
+    };
 
     return 1;
 };
