@@ -231,8 +231,9 @@ int move@Board(int x, int y){
     }, po);
 
     if (danger.size > 0){
-        print("    King is in danger\n");
+        print("    King is in danger if you make this move\n");
         print("    Press enter to continue...\n");
+        selectedPiece.forceMove(selectedX, selectedY);
         readString(?b);
         return 1;
     };
