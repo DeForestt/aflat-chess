@@ -216,9 +216,7 @@ int move@Board(int x, int y){
     // Check if the king will be in danger
     int kingX = k.x;
     int kingY = k.y;
-    Pos po = new Pos;
-    po.x = kingX;
-    po.y = kingY;
+    Pos po = new Pos(kingX, kingY);
 
     Array danger = enemies.where([Piece en, int i, Pos loc]=>{
         int tx = loc.x;
@@ -311,4 +309,9 @@ Piece inspect@Board(int x, int y){
     };
 
     return found;
+};
+
+Pos init@Pos(int x, int y){
+    my.x = x;
+    my.y = y;
 };

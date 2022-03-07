@@ -25,4 +25,6 @@ class Board{
 class Pos{
     int x;
     int y;
+
+    adr init(int x, int y);
 };

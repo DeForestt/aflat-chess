@@ -22,7 +22,7 @@ int moveKing(King k, int x, int y, int check){
         enemies = b.whitePieces;
     };
 
-    Pos po = new Pos;
+    Pos po = new Pos(x, y);
     po.x = x;
     po.y = y;
 
@@ -43,7 +43,11 @@ int moveKing(King k, int x, int y, int check){
             print("This move will put your king in check!");
             return 0;
         };
+
+        free(dangerList);
     };
+
+    free(Pos);
 
     color = k.color;
     
