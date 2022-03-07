@@ -171,12 +171,12 @@ int select@Board(int x, int y){
 int move@Board(int x, int y){ 
     int turn;
     turn = my.turn;
-    int selextedX;
-    selextedX = my.selectedX;
+    int selectedX;
+    selectedX = my.selectedX;
     int selectedY;
     selectedY = my.selectedY;
     char 15 b;
-    Piece selectedPiece = my.inspect(selextedX, selectedY);
+    Piece selectedPiece = my.inspect(selectedX, selectedY);
 
     if (selectedPiece == NULL){
         print("    No piece selected\n");
