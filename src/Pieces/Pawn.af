@@ -95,7 +95,7 @@ Pawn init@Pawn(int x, int y, int color, Board board){
     my.die = killPiece;
     my.move = movePawn;
     my.draw = drawPawn;
-    my.forceMove = movePawn;
+    my.forceMove = forceMove;
 
     // set the face color based on the color
     if (color == 0){
