@@ -94,7 +94,9 @@ int moveRook(Rook p, int x, int y){
     };
 
     if (coll != NULL){
-        coll.die();
+        if (check == 0){
+            coll.die();
+        };
     };
 
     p.x = x;

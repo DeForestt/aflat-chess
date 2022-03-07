@@ -62,7 +62,9 @@ adr movePawn = [Pawn p, int x, int y, int check] => {
         if (dX < -1){
             return 0;
         };
-        coll.die();
+        if (check == 0){
+            coll.die();
+        };
     };
 
     if (check == 0){

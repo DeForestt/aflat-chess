@@ -75,7 +75,9 @@ int moveKing(King k, int x, int y, int check){
         if(coll.color == color){
             return 0;
         };
-        coll.die();
+        if (check == 0){
+            coll.die();
+        };
     };
 
     if (check == 0){
