@@ -123,6 +123,7 @@ Queen init@Queen(int x, int y, int color, Board board){
     my.die = killPiece;
 
     my.move = moveQueen;
+    my.forceMove = forceMove;
     
     my.draw = [Queen n] => {
         print(n.face);

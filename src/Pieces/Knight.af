@@ -64,6 +64,7 @@ Knight init@Knight(int x, int y, int color, Board board){
     my.board = board;
 
     my.die = killPiece;
+    my.forceMove = forceMove;
     
     my.draw = [Knight n] => {
         print(n.face);

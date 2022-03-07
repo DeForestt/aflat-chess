@@ -13,7 +13,9 @@ class Piece{
         adr die;
         adr draw;
         adr move;
+        adr forceMove;
     };
 };
 
 int killPiece();
+int forceMove(Piece piece, int x, int y);

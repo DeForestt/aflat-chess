@@ -6,3 +6,9 @@ int killPiece(Piece piece){
     piece.y = -1;
     return 0;
 };
+
+int forceMove(Piece piece, int x, int y){
+    piece.x = x;
+    piece.y = y;
+    return 0;
+};

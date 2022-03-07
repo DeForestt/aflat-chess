@@ -115,6 +115,7 @@ Rook init@Rook(int x, int y, int color, Board board) {
     };
 
     my.move = moveRook;
+    my.forceMove = forceMove;
 
     if (my.color == 1){
         my.face = "♖";

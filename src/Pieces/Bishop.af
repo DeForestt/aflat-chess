@@ -63,6 +63,7 @@ Bishop init@Bishop(int x, int y, int color, Board board){
 
     my.die = killPiece;
     my.move = moveBishop;
+    my.forceMove = forceMove;
 
     my.draw = [Bishop b] => {
         print(b.face);

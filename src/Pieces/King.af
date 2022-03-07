@@ -96,6 +96,7 @@ King init@King(int x, int y, int color, Board board){
     };
     my.die = killPiece;
     my.move = moveKing;
+    my.forceMove = forceMove;
 
     if(color == 1){
         my.face = "♔";
