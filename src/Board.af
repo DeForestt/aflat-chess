@@ -12,10 +12,8 @@
 Board init@Board(){
     my.whitePieces = new LinkedList();
     my.blackPieces = new LinkedList();
-    LinkedList whitePieces;
-    whitePieces = my.whitePieces;
-    LinkedList blackPieces;
-    blackPieces = my.blackPieces;
+    LinkedList whitePieces = my.whitePieces;
+    LinkedList blackPieces = my.blackPieces;
 
     my.selectedX = 0;
     my.selectedY = 1;
@@ -154,6 +152,7 @@ int display@Board(){
                     };
                     whiteOut = setOut;
                 };
+
         };
         print("| "); printInt(i + 1);
         printChar('\n');
@@ -254,18 +253,16 @@ int delete@Board(){
     LinkedList whitePieces = my.whitePieces;
     LinkedList blackPieces = my.blackPieces;
 
-    whitePieces.delete();
-    blackPieces.delete();
+    whitePieces.erace();
+    blackPieces.erace();
 
     free(my);
     return 0;
 };
 
 Piece inspect@Board(int x, int y){
-    LinkedList blackPieces;
-    blackPieces = my.blackPieces;
-    LinkedList whitePieces;
-    whitePieces = my.whitePieces;
+    LinkedList blackPieces = my.blackPieces;
+    LinkedList whitePieces = my.whitePieces;
 
     Piece found = NULL;
     

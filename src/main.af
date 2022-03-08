@@ -10,6 +10,7 @@ int main(){
 	Board b = new Board();
 	while (1 == 1){
 		clear();
+		print("\n");
 		b.display();
 		print("Enter a Piece Location: ");
 		char 20 input;
@@ -28,6 +29,7 @@ int main(){
 		b.select(intLetter, number);
 
 		clear();
+		print("\n");
 		b.display();
 
 		print("Enter a move: ");

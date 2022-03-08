@@ -14,7 +14,7 @@ int moveKing(King k, int x, int y, int check){
     if(x < 0) {return 0;};
     if(y < 0) {return 0;};
 
-    LinkedList enemies;
+    LinkedList enemies = new LinkedList();
     if (k.color == 0){
         enemies = b.blackPieces;
     };
@@ -42,7 +42,7 @@ int moveKing(King k, int x, int y, int check){
             return 0;
         };
 
-        free(dangerList);
+        dangerList.delete();
     };
 
     free(po);
