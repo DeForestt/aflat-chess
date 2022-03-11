@@ -25,20 +25,22 @@ int moveKing(King k, int x, int y, int check){
     Pos po = new Pos(x, y);
 
     if(check == 0){
-        Array dangerList = enemies.where([Piece en, int i, Pos loc]=>{
-            int tx;
-            tx = loc.x;
-            int ty;
-            ty = loc.y;
+        LinkedList dangerList = enemies.where([Piece en, int i, Pos loc]=>{
+            int tx = loc.x;
+            int ty = loc.y;
             int safe = en.move(tx, ty, 1);
-            if (en.x == -1){
-                return 0;
+
+            if en.x == -1 {
+                return false;
             };
-            return safe;
+
+            return safe == 0;
         }, po);
 
-        if(dangerList.size > 0){
-            print("This move will put your king in check!");
+        free(po);
+
+        if dangerList.size() > 0 {
+            print("This move will put your king in check!\n");
             return 0;
         };
 

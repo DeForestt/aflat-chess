@@ -45,7 +45,7 @@ int moveRook(Rook p, int x, int y, int check){
         if (spaceB < 0){
             spaceB = spaceB * -1;
         };
-        for {int i = 1;}(i < spaceB){i = i + 1;}{
+        for int i = 1; i < spaceB; i = i + 1 {
             if (dX > 0){
                 int nx = myX + i;
                 Piece obs = b.inspect(nx, myY);
@@ -71,7 +71,7 @@ int moveRook(Rook p, int x, int y, int check){
             spaceB = spaceB * -1;
         };
 
-        for {int i = 1;}(i < spaceB){i = i + 1;}{
+        for  int i = 1; i < spaceB; i = i + 1 {
             if (dY > 0){
                 int ny = myY + i;
                 Piece obs = b.inspect(myX, ny);
@@ -120,10 +120,8 @@ Rook init@Rook(int x, int y, int color, Board board) {
     my.move = moveRook;
     my.forceMove = forceMove;
 
-    if (my.color == 1){
-        my.face = "♖";
-    };
-    if (my.color == 0){
+    if my.color == 1
+        my.face = "♖"
+    else
         my.face = "♜";
-    };
 };

@@ -19,85 +19,65 @@ Board init@Board(){
     my.selectedY = 1;
     
     // fill the board with pieces
-    for{int i = 0;}(i < 8){i = i + 1}{
-        for{int j = 0;}(j < 8){j = j + 1}{
-            if (i == 1){
+    for int i = 0; i < 8; i = i + 1 {
+        for int j = 0; j < 8; j = j + 1 {
+            if i == 1 {
                 Pawn p = new Pawn(j, i, 0, my);
                 whitePieces.append(p);
-            };
-            
-            if (i == 6){
+            } else if i == 6 {
                 Pawn p = new Pawn(j, i, 1, my);
                 blackPieces.append(p);
-            };
-
-            if (i == 0){
-                if (j == 0){
+            } else if i == 0 {
+                if j == 0 {
                     Rook r = new Rook(j, i, 0, my);
                     whitePieces.append(r);
-                };
-                if (j == 7){
+                } else if j == 7 {
                     Rook r = new Rook(j, i, 0, my);
                     whitePieces.append(r);
-                };
-                if (j == 1){
+                } else if j == 1 {
                     Knight k = new Knight(j, i, 0, my);
                     whitePieces.append(k);
-                };
-                if (j == 6){
+                } else if j == 6 {
                     Knight k = new Knight(j, i, 0, my);
                     whitePieces.append(k);
-                };
-                if (j == 2){
+                } else if j == 2 {
                     Bishop b = new Bishop(j, i, 0, my);
                     whitePieces.append(b);
-                };
-                if (j == 5){
+                } else if j == 5{
                     Bishop b = new Bishop(j, i, 0, my);
                     whitePieces.append(b);
-                };
-                if (j == 3){
+                } else if j == 3 {
                     King k = new King(j, i, 0, my);
                     my.whiteKing = k;
                     whitePieces.append(k);
-                };
-                if (j == 4){
+                } else if j == 4 {
                     Queen q = new Queen(j, i, 0, my);
                     whitePieces.append(q);
                 };
-            };
-
-            if (i == 7){
-                if (j == 0){
+            } else if i == 7 {
+                if j == 0 {
                     Rook r = new Rook(j, i, 1, my);
                     blackPieces.append(r);
-                };
-                if (j == 7){
+                } else if j == 7 {
                     Rook r = new Rook(j, i, 1, my);
                     blackPieces.append(r);
-                };
-                if (j == 1){
+                } else if j == 1 {
                     Knight k = new Knight(j, i, 1, my);
                     blackPieces.append(k);
-                };
-                if (j == 6){
+                } else if j == 6 {
                     Knight k = new Knight(j, i, 1, my);
                     blackPieces.append(k);
-                };
-                if (j == 2){
+                } else if j == 2 {
                     Bishop b = new Bishop(j, i, 1, my);
                     blackPieces.append(b);
-                };
-                if (j == 5){
+                } else if j == 5 {
                     Bishop b = new Bishop(j, i, 1, my);
                     blackPieces.append(b);
-                };
-                if (j == 4){
+                } else if j == 4 {
                     King k = new King(j, i, 1, my);
                     my.blackKing = k;
                     blackPieces.append(k);
-                };
-                if (j == 3){
+                } else if j == 3 {
                     Queen q = new Queen(j, i, 1, my);
                     blackPieces.append(q);
                 };
@@ -109,48 +89,34 @@ Board init@Board(){
 };
 
 int display@Board(){
-    int whiteOut = 0;
+    bool whiteOut = false;
 
     print("  A B C D E F G H\n");
-    for{int i = 0;}(i < 8){i = i + 1;}{
-        int setOut;
-        if (whiteOut == 0){
-            setOut = 1;
-        };
-        if (whiteOut == 1){
-            setOut = 0;
-        };
-        whiteOut = setOut;
+    for int i = 0; i < 8; i = i + 1 {
+        whiteOut = !whiteOut;
 
         printInt(i + 1); print("|");
 
-        for{int j = 0;}(j < 8){j = j + 1;}{
+        for int j = 0; j < 8; j = j + 1; {
                 Piece p = my.inspect(j, i);
                 if (p != NULL){
                     p.draw();
                     char c = ' ';
-                    if (i == my.selectedY){
-                        if (j == my.selectedX){
-                            c = '*';
+                    if i == my.selectedY {
+                        if j == my.selectedX {
+                           c = '*';
                         };
                     };
                     printChar(c);
-                    if (whiteOut == 0){
-                        setOut = 1;
-                    } else if (whiteOut == 1){
-                        setOut = 0;
-                    };
-                    whiteOut = setOut;
-                };
-                if (p == NULL){
-                    if (whiteOut == 0){
+                    whiteOut = !whiteOut;
+                } else {
+                    if !whiteOut {
                         print("██");
-                        setOut = 1;
-                    } else if (whiteOut == 1){
+                    } else {
                         print("  ");
-                        setOut = 0;
                     };
-                    whiteOut = setOut;
+
+                    whiteOut = !whiteOut;
                 };
 
         };
@@ -177,14 +143,14 @@ int move@Board(int x, int y){
     char 15 b;
     Piece selectedPiece = my.inspect(selectedX, selectedY);
 
-    if (selectedPiece == NULL){
+    if selectedPiece == NULL {
         print("    No piece selected\n");
         print("    Press enter to continue...\n");
         readString(?b);
         return 1;
     };
 
-    if (selectedPiece.color != turn){
+    if selectedPiece.color != turn {
         print("    Not your turn\n");
         print("    Press enter to continue...\n");
         readString(?b);
@@ -193,7 +159,7 @@ int move@Board(int x, int y){
 
     int fair = selectedPiece.move(x, y, 0);
 
-    if (fair == 0){
+    if fair == 0 {
         print("    Illegal move\n");
         print("    Press enter to continue...\n");
         readString(?b);
@@ -203,11 +169,10 @@ int move@Board(int x, int y){
     Piece k;
     ICollection enemies;
 
-    if (turn == 0){
+    if turn == 0 {
         k = my.whiteKing;
         enemies = my.blackPieces;
-    };
-    if (turn == 1){
+    } else {
         k = my.blackKing;
         enemies = my.whitePieces;
     };
@@ -217,19 +182,21 @@ int move@Board(int x, int y){
     int kingY = k.y;
     Pos po = new Pos(kingX, kingY);
 
-    Array danger = enemies.where([Piece en, int i, Pos loc]=>{
+    LinkedList danger = enemies.where([Piece en, int i, Pos loc]=>{
         int tx = loc.x;
         int ty = loc.y;
         int safe = en.move(tx, ty, 1);
-        if (en.x == -1){
-            return 0;
+
+        if en.x == -1 {
+             return false;
         };
-        return safe;
+
+        return safe == 1;
     }, po);
 
     free(po);
 
-    if (danger.size > 0){
+    if danger.size() > 0 {
         print("    King is in danger if you make this move\n");
         print("    Press enter to continue...\n");
         
@@ -238,11 +205,11 @@ int move@Board(int x, int y){
         return 1;
     };
 
-    if (turn == 0){
+    if  turn == 0 {
         my.turn = 1;
     };
 
-    if (turn == 1){
+    if turn == 1 {
         my.turn = 0;
     };
 
@@ -268,52 +235,38 @@ Piece inspect@Board(int x, int y){
     
     Pos po = new Pos(x, y);
 
-    Array onSpace = whitePieces.where([Piece p, int index, Pos me] => {
-        int mX;
-        mX = me.x;
-        int mY;
-        mY = me.y;
-        int pX;
-        pX = p.x;
-        int pY;
-        pY = p.y;
+    LinkedList onSpace = whitePieces.where([Piece p, int index, Pos me] => {
+        int mX = me.x;
+        int mY = me.y;
+        int pX = p.x;
+        int pY = p.y;
 
-        if (mX == pX) {
-            if (mY == pY) {
-                return 1;
-            };
+        if (mX == pX) & (mY == pY) {
+            return 1;
         };
         return 0;
     }, po);
 
-    if (onSpace.size > 0){
-        adr pointer = onSpace.at(0);
-        found = pointer as Piece;
+    if onSpace.size() > 0 {
+        found = onSpace.get(0);
         free(po);
         return found;
     };
 
     onSpace = blackPieces.where([Piece p, int index, Pos me] => {
-        int mX;
-        mX = me.x;
-        int mY;
-        mY = me.y;
-        int pX;
-        pX = p.x;
-        int pY;
-        pY = p.y;
+        int mX = me.x;
+        int mY = me.y;
+        int pX = p.x;
+        int pY = p.y;
 
-        if (mX == pX) {
-            if (mY == pY) {
-                return 1;
-            };
+        if (mX == pX) & (mY == pY) {
+            return 1;
         };
         return 0;
     }, po);
 
-    if (onSpace.size > 0){
-        adr pointer = onSpace.at(0);
-        found = pointer as Piece;
+    if onSpace.size() > 0 {
+        found = onSpace.get(0);
         free(po);
         return found;
     };
