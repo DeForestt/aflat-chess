@@ -44,7 +44,7 @@ int moveKing(King k, int x, int y, int check){
             return 0;
         };
 
-        dangerList.delete();
+        free(dangerList);
     };
 
     free(po);

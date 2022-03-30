@@ -253,7 +253,7 @@ Piece inspect@Board(int x, int y){
         return found;
     };
 
-    onSpace = blackPieces.where([Piece p, int index, Pos me] => {
+    LinkedList onSpace2 = blackPieces.where([Piece p, int index, Pos me] => {
         int mX = me.x;
         int mY = me.y;
         int pX = p.x;
@@ -265,8 +265,8 @@ Piece inspect@Board(int x, int y){
         return 0;
     }, po);
 
-    if onSpace.size() > 0 {
-        found = onSpace.get(0);
+    if onSpace2.size() > 0 {
+        found = onSpace2.get(0);
         free(po);
         return found;
     };
