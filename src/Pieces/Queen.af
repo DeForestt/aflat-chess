@@ -1,8 +1,14 @@
-.root "head"
-.needs "Pieces/Queen.gs"
 .needs <io>
 .needs <std>
 .needs <math>
+
+import Board from "./src/Board.af";
+import Piece from "./src/Piece.af";
+import {killPiece, forceMove} from "./src/Piece.af" under pc;
+
+class Queen signs Piece{
+    int init(int x, int y, int color, Board board);
+};
 
 int moveQueen(Queen k, int x, int y, int check){
     int color; int myX; int myY; Board b;
@@ -124,10 +130,10 @@ Queen init@Queen(int x, int y, int color, Board board){
     my.color = color;
     my.board = board;
 
-    my.die = killPiece;
+    my.die = pc.killPiece;
 
     my.move = moveQueen;
-    my.forceMove = forceMove;
+    my.forceMove = pc.forceMove;
     
     my.draw = [Queen n] => {
         print(n.face);

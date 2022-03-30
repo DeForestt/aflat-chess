@@ -1,7 +1,14 @@
-.root "head"
-.needs "Pieces/Rook"
+
 .needs <io>
 .needs <std>
+
+import Board from "./src/Board.af";
+import Piece from "./src/Piece.af";
+import {killPiece, forceMove} from "./src/Piece.af" under pc;
+
+class Rook signs Piece {
+    adr init(int x, int y, int color, Board board);
+};
 
 int moveRook(Rook p, int x, int y, int check){
     int color; int myX; int myY; Board b;
@@ -77,7 +84,8 @@ int moveRook(Rook p, int x, int y, int check){
                 Piece obs = b.inspect(myX, ny);
                 if (obs != NULL){
                     print("obstruction"); print(obs.face); print( " at : ");
-                    printInt(myX); print(" "); printInt(ny); print("\n");
+                    printInt(myX); print(" "); printInt(ny);
+                    print("\n");
                     return 0;
                 };
             };
@@ -86,7 +94,8 @@ int moveRook(Rook p, int x, int y, int check){
                 Piece obs = b.inspect(myX, ny);
                 if (obs != NULL){
                     print("obstruction"); print(obs.face); print( " at : ");
-                    printInt(myX); print(" "); printInt(ny); print("\n");
+                    printInt(myX); print(" "); printInt(ny);
+                    print("\n");
                     return 0;
                 };
             };
@@ -112,13 +121,13 @@ Rook init@Rook(int x, int y, int color, Board board) {
     my.color = color;
     my.board = board;
 
-    my.die = killPiece;
+    my.die = pc.killPiece;
     my.draw = [Rook r] => {
         print(r.face);
     };
 
     my.move = moveRook;
-    my.forceMove = forceMove;
+    my.forceMove = pc.forceMove;
 
     if my.color == 1
         my.face = "♖"

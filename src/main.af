@@ -1,10 +1,10 @@
 .needs <io>
 .needs <std>
 .needs <strings>
-.root "head"
-.needs "Board"
 
 int letterToNumber(char letter);
+
+import Board from "./src/Board.af";
 
 int main(){
 	Board b = new Board();

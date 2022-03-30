@@ -1,7 +1,15 @@
-.root "head"
-.needs "Pieces/Pawn.gs"
 .needs <std>
 .needs <io> 
+
+import Board from "./src/Board.af";
+import Piece from "./src/Piece.af";
+import {killPiece, forceMove} from "./src/Piece.af" under pc;
+
+class Pawn signs Piece{
+    int moveCount;
+
+    int init(int x, int y, int color, Board board);
+};
 
 adr movePawn = [Pawn p, int x, int y, int check] => {
 
@@ -92,10 +100,10 @@ Pawn init@Pawn(int x, int y, int color, Board board){
     my.moveCount = 0;
 
 
-    my.die = killPiece;
+    my.die = pc.killPiece;
     my.move = movePawn;
     my.draw = drawPawn;
-    my.forceMove = forceMove;
+    my.forceMove = pc.forceMove;
 
     // set the face color based on the color
     if (color == 0){

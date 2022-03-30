@@ -1,13 +1,44 @@
-.root "head"
-.needs "Board"
 .needs <std>
-.needs "Pieces/Pawn"
-.needs "Pieces/Rook"
-.needs "Pieces/Knight"
-.needs "Pieces/Bishop"
-.needs "Pieces/Queen"
-.needs "Pieces/King"
 .needs <io>
+.needs <Collections>
+
+import Piece from "./src/Piece.af";
+
+import Pawn from "./src/Pieces/Pawn.af";
+import Rook from "./src/Pieces/Rook.af";
+import Knight from "./src/Pieces/Knight.af";
+import Bishop from "./src/Pieces/Bishop.af";
+import Queen from "./src/Pieces/Queen.af";
+import King from "./src/Pieces/King.af";
+
+
+class Board {
+    LinkedList whitePieces;
+    LinkedList blackPieces;
+
+    Piece whiteKing;
+    Piece blackKing;
+
+    // turn will be 0 for white, 1 for black
+    int turn;
+    int selectedX;
+    int selectedY;
+
+    Piece inspect(int x, int y);
+    int select(int x, int y);
+    int move(int x, int y);
+    int delete();
+
+    int display();
+    adr init();
+};
+
+class Pos{
+    int x;
+    int y;
+
+    adr init(int x, int y);
+};
 
 Board init@Board(){
     my.whitePieces = new LinkedList();

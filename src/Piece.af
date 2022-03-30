@@ -1,13 +1,26 @@
-.root "head"
-.needs "Piece.gs"
+class Piece{
+    contract{
+        int x;
+        int y;
+        int color;
+        adr face;
+        adr selectedFace;
 
-int killPiece(Piece piece){
+        adr board;
+        adr die;
+        adr draw;
+        adr move;
+        adr forceMove;
+    };
+};
+
+export int killPiece(Piece piece){
     piece.x = -1;
     piece.y = -1;
     return 0;
 };
 
-int forceMove(Piece piece, int x, int y){
+export int forceMove(Piece piece, int x, int y){
     piece.x = x;
     piece.y = y;
     return 0;

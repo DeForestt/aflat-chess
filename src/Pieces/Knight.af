@@ -1,6 +1,13 @@
-.root "head"
-.needs "Pieces/Knight.gs"
 .needs <io>
+.needs <std>
+
+import Board from "./src/Board.af";
+import Piece from "./src/Piece.af";
+import {killPiece, forceMove} from "./src/Piece.af" under pc;
+
+class Knight signs Piece{
+    adr init(int x, int y, int color, Board board);
+};
 
 int moveKnight(Knight k, int x, int y, int check){
     int color; int myX; int myY; Board b;
@@ -65,8 +72,8 @@ Knight init@Knight(int x, int y, int color, Board board){
     my.color = color;
     my.board = board;
 
-    my.die = killPiece;
-    my.forceMove = forceMove;
+    my.die = pc.killPiece;
+    my.forceMove = pc.forceMove;
     
     my.draw = [Knight n] => {
         print(n.face);

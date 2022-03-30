@@ -1,7 +1,15 @@
-.root "head"
-.needs "Pieces/Bishop.gs"
 .needs <math>
 .needs <io>
+.needs <std>
+
+import Board from "./src/Board.af";
+import Piece from "./src/Piece.af";
+import {killPiece, forceMove} from "./src/Piece.af" under pc;
+
+
+class Bishop signs Piece{
+    adr init(int x, int y, int color, Board board);
+};
 
 int moveBishop(Bishop k, int x, int y, int check){
     
@@ -63,9 +71,9 @@ Bishop init@Bishop(int x, int y, int color, Board board){
     my.color = color;
     my.board = board;
 
-    my.die = killPiece;
+    my.die = pc.killPiece;
     my.move = moveBishop;
-    my.forceMove = forceMove;
+    my.forceMove = pc.forceMove;
 
     my.draw = [Bishop b] => {
         print(b.face);

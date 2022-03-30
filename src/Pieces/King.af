@@ -1,9 +1,18 @@
-.root "head"
-.needs "Pieces/King.gs"
 .needs <io>
 .needs <std>
 .needs <math>
 .needs <Collections>
+.needs <std>
+
+import Board from "./src/Board.af";
+import Pos from "./src/Board.af";
+
+import Piece from "./src/Piece.af";
+import {killPiece, forceMove} from "./src/Piece.af" under pc;
+
+class King signs Piece{
+    adr init(int x, int y, int color, Board board);
+};
 
 int moveKing(King k, int x, int y, int check){
     int color; int myX; int myY; Board b;
@@ -100,9 +109,9 @@ King init@King(int x, int y, int color, Board board){
     my.draw = [King k] => {
         print(k.face);
     };
-    my.die = killPiece;
+    my.die = pc.killPiece;
     my.move = moveKing;
-    my.forceMove = forceMove;
+    my.forceMove = pc.forceMove;
 
     if(color == 1){
         my.face = "♔";
