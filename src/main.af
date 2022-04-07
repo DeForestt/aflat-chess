@@ -5,10 +5,10 @@ import * from "strings" under str;
 
 int letterToNumber(char letter);
 
-import Board from "./src/Board.af";
+import Board from "./src/Board";
 
 int main(){
-	Board b = new Board();
+	Board b = Board();
 	while (1 == 1){
 		io.clear();
 		io.print("\n");
@@ -21,7 +21,6 @@ int main(){
 		if (letter == 'q'){
 			io.print("Thank you for playing!\n");
 			io.print("Quitting...\n");
-			b.delete();
 			return 0;
 		};
 		int number = io.toInt(cNumber);
