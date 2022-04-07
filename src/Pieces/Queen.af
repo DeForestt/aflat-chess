@@ -1,9 +1,9 @@
-.needs <io>
 .needs <std>
 .needs <math>
 
 import Board from "./src/Board.af";
 import Piece from "./src/Piece.af";
+import {print} from "io" under io;
 import {killPiece, forceMove} from "./src/Piece.af" under pc;
 
 class Queen signs Piece{
@@ -136,7 +136,7 @@ Queen init@Queen(int x, int y, int color, Board board){
     my.forceMove = pc.forceMove;
     
     my.draw = [Queen n] => {
-        print(n.face);
+        io.print(n.face);
     };
 
     if (color == 0){

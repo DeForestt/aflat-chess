@@ -1,10 +1,10 @@
 
-.needs <io>
 .needs <std>
 
 import Board from "./src/Board.af";
 import Piece from "./src/Piece.af";
 import {killPiece, forceMove} from "./src/Piece.af" under pc;
+import {print, printInt} from "io" under io;
 
 class Rook signs Piece {
     adr init(int x, int y, int color, Board board);
@@ -83,9 +83,9 @@ int moveRook(Rook p, int x, int y, int check){
                 int ny = myY + i;
                 Piece obs = b.inspect(myX, ny);
                 if (obs != NULL){
-                    print("obstruction"); print(obs.face); print( " at : ");
-                    printInt(myX); print(" "); printInt(ny);
-                    print("\n");
+                    io.print("obstruction"); io.print(obs.face); io.print( " at : ");
+                    io.printInt(myX); io.print(" "); io.printInt(ny);
+                    io.print("\n");
                     return 0;
                 };
             };
@@ -93,9 +93,9 @@ int moveRook(Rook p, int x, int y, int check){
                 int ny = y + i;
                 Piece obs = b.inspect(myX, ny);
                 if (obs != NULL){
-                    print("obstruction"); print(obs.face); print( " at : ");
-                    printInt(myX); print(" "); printInt(ny);
-                    print("\n");
+                    io.print("obstruction"); io.print(obs.face); io.print( " at : ");
+                    io.printInt(myX); io.print(" "); io.printInt(ny);
+                    io.print("\n");
                     return 0;
                 };
             };
@@ -123,7 +123,7 @@ Rook init@Rook(int x, int y, int color, Board board) {
 
     my.die = pc.killPiece;
     my.draw = [Rook r] => {
-        print(r.face);
+        io.print(r.face);
     };
 
     my.move = moveRook;

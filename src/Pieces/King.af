@@ -1,14 +1,13 @@
-.needs <io>
 .needs <std>
 .needs <math>
-.needs <Collections>
-.needs <std>
 
 import Board from "./src/Board.af";
 import Pos from "./src/Board.af";
+import ICollection, LinkedList from "Collections";
 
 import Piece from "./src/Piece.af";
 import {killPiece, forceMove} from "./src/Piece.af" under pc;
+import {print} from "io" under io;
 
 class King signs Piece{
     adr init(int x, int y, int color, Board board);
@@ -49,7 +48,7 @@ int moveKing(King k, int x, int y, int check){
         free(po);
 
         if dangerList.size() > 0 {
-            print("This move will put your king in check!\n");
+            io.print("This move will put your king in check!\n");
             return 0;
         };
 
@@ -107,7 +106,7 @@ King init@King(int x, int y, int color, Board board){
     my.board = board;
 
     my.draw = [King k] => {
-        print(k.face);
+        io.print(k.face);
     };
     my.die = pc.killPiece;
     my.move = moveKing;

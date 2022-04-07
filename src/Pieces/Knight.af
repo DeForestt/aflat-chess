@@ -1,9 +1,9 @@
-.needs <io>
 .needs <std>
 
 import Board from "./src/Board.af";
 import Piece from "./src/Piece.af";
 import {killPiece, forceMove} from "./src/Piece.af" under pc;
+import {print} from "io" under io;
 
 class Knight signs Piece{
     adr init(int x, int y, int color, Board board);
@@ -76,7 +76,7 @@ Knight init@Knight(int x, int y, int color, Board board){
     my.forceMove = pc.forceMove;
     
     my.draw = [Knight n] => {
-        print(n.face);
+        io.print(n.face);
     };
     
     my.move = moveKnight;

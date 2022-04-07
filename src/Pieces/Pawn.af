@@ -1,8 +1,8 @@
 .needs <std>
-.needs <io> 
 
 import Board from "./src/Board.af";
 import Piece from "./src/Piece.af";
+import {print} from "io" under io;
 import {killPiece, forceMove} from "./src/Piece.af" under pc;
 
 class Pawn signs Piece{
@@ -87,7 +87,7 @@ adr movePawn = [Pawn p, int x, int y, int check] => {
 };
 
 int drawPawn(Pawn p){
-    print(p.face);
+    io.print(p.face);
     return 1;
 };
 

@@ -1,6 +1,7 @@
-.needs <io>
 .needs <std>
-.needs <strings>
+
+import * from "io" under io;
+import * from "strings" under str;
 
 int letterToNumber(char letter);
 
@@ -9,36 +10,36 @@ import Board from "./src/Board.af";
 int main(){
 	Board b = new Board();
 	while (1 == 1){
-		clear();
-		print("\n");
+		io.clear();
+		io.print("\n");
 		b.display();
-		print("Enter a Piece Location: ");
+		io.print("Enter a Piece Location: ");
 		char 20 input;
-		readString(?input);
-		char letter = str_at(?input, 0);
-		char cNumber = str_at(?input, 1);
+		io.readString(?input);
+		char letter = str.str_at(?input, 0);
+		char cNumber = str.str_at(?input, 1);
 		if (letter == 'q'){
-			print("Thank you for playing!\n");
-			print("Quitting...\n");
+			io.print("Thank you for playing!\n");
+			io.print("Quitting...\n");
 			b.delete();
 			return 0;
 		};
-		int number = toInt(cNumber);
+		int number = io.toInt(cNumber);
 		number = number - 1;
 		int intLetter = letterToNumber(letter);
 		b.select(intLetter, number);
 
-		clear();
-		print("\n");
+		io.clear();
+		io.print("\n");
 		b.display();
 
-		print("Enter a move: ");
-		readString(?input);
+		io.print("Enter a move: ");
+		io.readString(?input);
 
-		letter = str_at(?input, 0);
-		cNumber = str_at(?input, 1);
+		letter = str.str_at(?input, 0);
+		cNumber = str.str_at(?input, 1);
 
-		number = toInt(cNumber);
+		number = io.toInt(cNumber);
 		number = number - 1;
 		intLetter = letterToNumber(letter);
 		b.move(intLetter, number);
@@ -48,24 +49,23 @@ int main(){
 
 int letterToNumber(char letter){
 	
-	if(letter == 'a'){return 0};
-	if(letter == 'A'){return 0};
-	if(letter == 'b'){return 1};
-	if(letter == 'B'){return 1};
-	if(letter == 'c'){return 2};
-	if(letter == 'C'){return 2};
-	if(letter == 'd'){return 3};
-	if(letter == 'D'){return 3};
-	if(letter == 'e'){return 4};
-	if(letter == 'E'){return 4};
-	if(letter == 'f'){return 5};
-	if(letter == 'F'){return 5};
-	if(letter == 'g'){return 6};
-	if(letter == 'G'){return 6};
-	if(letter == 'h'){return 7};
-	if(letter == 'H'){return 7};
+	if letter == 'a' return 0;
+	if letter == 'A' return 0;
+	if letter == 'b' return 1;
+	if letter == 'B' return 1;
+	if letter == 'c' return 2;
+	if letter == 'C' return 2;
+	if letter == 'd' return 3;
+	if letter == 'D' return 3;
+	if letter == 'e' return 4;
+	if letter == 'E' return 4;
+	if letter == 'f' return 5;
+	if letter == 'F' return 5;
+	if letter == 'g' return 6;
+	if letter == 'G' return 6;
+	if letter == 'h' return 7;
+	if letter == 'H' return 7;
 
 	//if we get here, we have an invalid letter
 	return -1;
-
 };

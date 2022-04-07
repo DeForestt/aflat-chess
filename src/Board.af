@@ -1,7 +1,6 @@
 .needs <std>
-.needs <io>
-.needs <Collections>
 
+import ICollection, LinkedList from "Collections";
 import Piece from "./src/Piece.af";
 
 import Pawn from "./src/Pieces/Pawn.af";
@@ -10,6 +9,8 @@ import Knight from "./src/Pieces/Knight.af";
 import Bishop from "./src/Pieces/Bishop.af";
 import Queen from "./src/Pieces/Queen.af";
 import King from "./src/Pieces/King.af";
+
+import * from "io" under io;
 
 
 class Board {
@@ -122,11 +123,11 @@ Board init@Board(){
 int display@Board(){
     bool whiteOut = false;
 
-    print("  A B C D E F G H\n");
+    io.print("  A B C D E F G H\n");
     for int i = 0; i < 8; i = i + 1 {
         whiteOut = !whiteOut;
 
-        printInt(i + 1); print("|");
+        io.printInt(i + 1); io.print("|");
 
         for int j = 0; j < 8; j = j + 1; {
                 Piece p = my.inspect(j, i);
@@ -138,23 +139,23 @@ int display@Board(){
                            c = '*';
                         };
                     };
-                    printChar(c);
+                    io.printChar(c);
                     whiteOut = !whiteOut;
                 } else {
                     if !whiteOut {
-                        print("██");
+                        io.print("██");
                     } else {
-                        print("  ");
+                        io.print("  ");
                     };
 
                     whiteOut = !whiteOut;
                 };
 
         };
-        print("| "); printInt(i + 1);
-        printChar('\n');
+        io.print("| "); io.printInt(i + 1);
+        io.printChar('\n');
     };
-    print("  A B C D E F G H\n");
+    io.print("  A B C D E F G H\n");
     return 0;
 };
 
@@ -175,25 +176,25 @@ int move@Board(int x, int y){
     Piece selectedPiece = my.inspect(selectedX, selectedY);
 
     if selectedPiece == NULL {
-        print("    No piece selected\n");
-        print("    Press enter to continue...\n");
-        readString(?b);
+        io.print("    No piece selected\n");
+        io.print("    Press enter to continue...\n");
+        io.readString(?b);
         return 1;
     };
 
     if selectedPiece.color != turn {
-        print("    Not your turn\n");
-        print("    Press enter to continue...\n");
-        readString(?b);
+        io.print("    Not your turn\n");
+        io.print("    Press enter to continue...\n");
+        io.readString(?b);
         return 1;
     };
 
     int fair = selectedPiece.move(x, y, 0);
 
     if fair == 0 {
-        print("    Illegal move\n");
-        print("    Press enter to continue...\n");
-        readString(?b);
+        io.print("    Illegal move\n");
+        io.print("    Press enter to continue...\n");
+        io.readString(?b);
         return 1;
     };
 
@@ -228,11 +229,11 @@ int move@Board(int x, int y){
     free(po);
 
     if danger.size() > 0 {
-        print("    King is in danger if you make this move\n");
-        print("    Press enter to continue...\n");
+        io.print("    King is in danger if you make this move\n");
+        io.print("    Press enter to continue...\n");
         
         selectedPiece.forceMove(selectedX, selectedY);
-        readString(?b);
+        io.readString(?b);
         return 1;
     };
 
