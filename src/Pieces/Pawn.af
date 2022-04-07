@@ -3,7 +3,6 @@
 import Board from "./src/Board.af";
 import Piece from "./src/Piece.af";
 import {print} from "io" under io;
-import {killPiece, forceMove} from "./src/Piece.af" under pc;
 
 class Pawn signs Piece{
     int moveCount;
@@ -100,11 +99,8 @@ Pawn init@Pawn(int x, int y, int color, Board board){
     my.moveCount = 0;
 
 
-    my.die = pc.killPiece;
     my.move = movePawn;
     my.draw = drawPawn;
-    my.forceMove = pc.forceMove;
-
     // set the face color based on the color
     if (color == 0){
         my.face = "♟";

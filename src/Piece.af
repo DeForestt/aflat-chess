@@ -7,21 +7,22 @@ class Piece{
         adr selectedFace;
 
         adr board;
-        adr die;
         adr draw;
         adr move;
-        adr forceMove;
     };
+
+    int forceMove(int x, int y);
+    int die();
 };
 
-export int killPiece(Piece piece){
-    piece.x = -1;
-    piece.y = -1;
+int die@Piece(Piece piece){
+    my.x = -1;
+    my.y = -1;
     return 0;
 };
 
-export int forceMove(Piece piece, int x, int y){
-    piece.x = x;
-    piece.y = y;
+int forceMove@Piece(int x, int y){
+    my.x = x;
+    my.y = y;
     return 0;
 };

@@ -3,7 +3,6 @@
 
 import Board from "./src/Board.af";
 import Piece from "./src/Piece.af";
-import {killPiece, forceMove} from "./src/Piece.af" under pc;
 import {print, printInt} from "io" under io;
 
 class Rook signs Piece {
@@ -121,13 +120,11 @@ Rook init@Rook(int x, int y, int color, Board board) {
     my.color = color;
     my.board = board;
 
-    my.die = pc.killPiece;
     my.draw = [Rook r] => {
         io.print(r.face);
     };
 
     my.move = moveRook;
-    my.forceMove = pc.forceMove;
 
     if my.color == 1
         my.face = "♖"
